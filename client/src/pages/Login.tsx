@@ -46,7 +46,7 @@ const Login = () => {
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: '',
+      emailOrUsername: '',
       password: '',
       rememberMe: false,
     },
@@ -57,7 +57,7 @@ const Login = () => {
       setIsLoading(true);
       setError(null);
       await login({
-        email: values.email,
+        email: values.emailOrUsername, // Email field is reused for username
         password: values.password,
       });
       navigate(redirect);
@@ -89,12 +89,12 @@ const Login = () => {
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <FormField
                   control={form.control}
-                  name="email"
+                  name="emailOrUsername"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>Email or Username</FormLabel>
                       <FormControl>
-                        <Input placeholder="your.email@example.com" {...field} />
+                        <Input placeholder="email@example.com or username" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

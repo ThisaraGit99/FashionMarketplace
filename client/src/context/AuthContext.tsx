@@ -20,7 +20,7 @@ interface User {
 }
 
 interface LoginCredentials {
-  email: string;
+  email: string; // This will be treated as email or username
   password: string;
 }
 

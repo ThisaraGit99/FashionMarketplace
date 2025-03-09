@@ -97,10 +97,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { email, password } = req.body;
       
       if (!email || !password) {
-        return res.status(400).json({ message: "Email and password are required" });
+        return res.status(400).json({ message: "Email/username and password are required" });
       }
       
-      const user = await storage.getUserByEmail(email);
+      // Try to find user by email first, then by username if email lookup fails
+      let user = await storage.getUserByEmail(email);
+      
+      if (!user) {
+        // If user not found by email, try by username
+        user = await storage.getUserByUsername(email);
+      }
       
       if (!user || user.password !== password) { // In real app would use proper password comparison
         return res.status(401).json({ message: "Invalid credentials" });
