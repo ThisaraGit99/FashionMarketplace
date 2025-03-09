@@ -1,0 +1,93 @@
+Goal:
+Create an e-commerce website where users can browse and purchase fashion items such as clothing, shoes, and accessories. The site will allow users to:
+
+Browse product categories
+View detailed product pages
+Add products to their cart
+Complete the checkout process
+Leave product reviews and ratings
+User authentication and profile management
+For the admin side, it will allow:
+
+Managing products
+Managing orders
+Managing users
+Technologies to Use
+Frontend (Angular)
+Angular (for building the dynamic UI)
+Languages: TypeScript, HTML, CSS
+Libraries/Frameworks:
+Bootstrap 5 (for responsive grid and basic styling)
+Font Awesome (for icons like cart, search, etc.)
+ngx-toastr (for notifications like "Item added to cart")
+Angular Material (optional, for additional UI components like buttons, cards, etc.)
+Backend (Node.js + Express)
+Node.js with Express.js (for building the REST API)
+Languages: JavaScript (or TypeScript if you prefer)
+Database: MongoDB (with Mongoose for ODM)
+Authentication: JWT (JSON Web Tokens) for user authentication
+Payment Gateway: Stripe or PayPal (for handling payments)
+Features & Functionality
+1. User Authentication
+Registration:
+Users can create an account with their basic details (name, email, password, etc.)
+Login:
+Users can log in with their email and password.
+Use JWT (JSON Web Token) for managing sessions (store tokens on the client-side).
+Profile Management:
+Users can view and update their account details (name, email, password, shipping address, etc.).
+Users can view their order history.
+2. Product Catalog
+Product Pages:
+Each product should have the following details:
+Product Name
+High-Quality Images (multiple angles of the product)
+Price
+Size Options (S, M, L, XL, etc.)
+Color Options
+Product Description
+Material Information
+“Add to Cart” button
+Categories:
+Products should be categorized (e.g., Men’s Clothing, Women’s Clothing, Shoes, Accessories).
+Each category should have a product listing with filters for size, color, price, etc.
+Search Bar:
+Users should be able to search for products by name or category.
+3. Cart & Checkout
+Add to Cart:
+Users can add products to their shopping cart. Each item should show the product name, size, color, price, and quantity.
+View Cart:
+Users can view and manage the items in their cart, including updating quantities or removing items.
+Checkout:
+Collect shipping details (address, contact information) and payment information.
+Integrate a payment gateway (e.g., Stripe or PayPal) to process payments.
+After a successful order, the user receives an order confirmation page.
+4. Admin Panel
+Product Management:
+Admins should be able to add, edit, and delete products.
+Admins can upload product images and set prices, sizes, and categories.
+Order Management:
+Admins should be able to view orders and update their status (e.g., "Pending," "Shipped," "Delivered").
+User Management:
+Admins can view user profiles and deactivate accounts if needed.
+5. Product Reviews & Ratings
+Customer Reviews:
+Users can rate products and leave a review with comments.
+Display an average rating (e.g., 4.5 stars) on each product page.
+6. Responsive Design
+Mobile-First Design:
+The site should work on all devices, including desktops, tablets, and smartphones.
+Use Bootstrap 5 for responsive grids and layout.
+Color Palette
+Primary Color:
+#4A90E2 (Blue) – A soft, appealing blue for buttons, links, and headers.
+Secondary Color:
+#FF6347 (Tomato Red) – For call-to-action buttons like "Add to Cart" or "Buy Now."
+Background Color:
+#F9F9F9 (Light Gray) – A neutral background to keep the focus on the products.
+Text Color:
+#333333 (Dark Gray) – For readability of text across the site.
+Accent Color:
+#F2C94C (Golden Yellow) – For highlighting promotions or special discounts.
+Borders/Dividers:
+#D1D1D1 (Light Gray) – To separate sections or products.
