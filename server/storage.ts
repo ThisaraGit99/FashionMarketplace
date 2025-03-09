@@ -119,6 +119,7 @@ export class MemStorage implements IStorage {
     };
     
     const products = [
+      // Women's Clothing
       {
         name: "Casual Summer Dress",
         description: "A versatile and comfortable summer dress perfect for any casual occasion. Made with lightweight, breathable fabric.",
@@ -133,6 +134,61 @@ export class MemStorage implements IStorage {
         isFeatured: true
       },
       {
+        name: "Floral Maxi Dress",
+        description: "Elegant floral print maxi dress with adjustable straps. Perfect for spring and summer events.",
+        price: 79.99,
+        category: "womens",
+        subCategory: "dresses",
+        imageUrls: ["https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"],
+        sizes: ["XS", "S", "M", "L", "XL"],
+        colors: ["Blue", "Pink", "White"],
+        material: "Polyester Blend",
+        isNew: true,
+        isFeatured: false
+      },
+      {
+        name: "Silk Blouse",
+        description: "Elegant silk blouse with a relaxed fit. Versatile for both professional and casual settings.",
+        price: 59.99,
+        category: "womens",
+        subCategory: "tops",
+        imageUrls: ["https://images.unsplash.com/photo-1594223274512-ad4803739b7c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"],
+        sizes: ["S", "M", "L"],
+        colors: ["White", "Black", "Navy"],
+        material: "100% Silk",
+        isNew: true,
+        isFeatured: false
+      },
+      {
+        name: "Striped Cotton Top",
+        description: "Casual striped cotton top with short sleeves. Great for everyday wear with a comfortable fit.",
+        price: 34.99,
+        salePrice: 29.99,
+        category: "womens",
+        subCategory: "tops",
+        imageUrls: ["https://images.unsplash.com/photo-1503185912284-5271ff81b9a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"],
+        sizes: ["XS", "S", "M", "L", "XL"],
+        colors: ["Blue/White", "Black/White", "Red/White"],
+        material: "100% Cotton",
+        isNew: false,
+        isFeatured: false
+      },
+      {
+        name: "High-Waisted Skinny Jeans",
+        description: "Flattering high-waisted skinny jeans with a bit of stretch for comfort. A wardrobe essential.",
+        price: 69.99,
+        category: "womens",
+        subCategory: "jeans",
+        imageUrls: ["https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"],
+        sizes: ["24", "25", "26", "27", "28", "29", "30", "31", "32"],
+        colors: ["Dark Blue", "Black", "Light Blue"],
+        material: "98% Cotton, 2% Elastane",
+        isNew: false,
+        isFeatured: true
+      },
+      
+      // Men's Clothing
+      {
         name: "Classic Denim Jacket",
         description: "A timeless denim jacket that completes any outfit. Perfect for layering in any season.",
         price: 89.99,
@@ -146,10 +202,78 @@ export class MemStorage implements IStorage {
         isFeatured: true
       },
       {
+        name: "Oxford Button-Down Shirt",
+        description: "Classic oxford button-down shirt made with premium cotton. A versatile addition to any wardrobe.",
+        price: 59.99,
+        category: "mens",
+        subCategory: "shirts",
+        imageUrls: ["https://images.unsplash.com/photo-1598033129183-c4f50c736f10?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"],
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        colors: ["White", "Blue", "Pink", "Gray"],
+        material: "100% Cotton",
+        isNew: false,
+        isFeatured: false
+      },
+      {
+        name: "Graphic Print T-Shirt",
+        description: "Comfortable cotton t-shirt featuring a unique graphic design. Perfect for casual everyday wear.",
+        price: 29.99,
+        category: "mens",
+        subCategory: "t-shirts",
+        imageUrls: ["https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"],
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        colors: ["White", "Black", "Gray"],
+        material: "100% Cotton",
+        isNew: true,
+        isFeatured: false
+      },
+      {
+        name: "Premium Cotton T-Shirt",
+        description: "Essential crew neck t-shirt made from premium cotton for everyday comfort and style.",
+        price: 24.99,
+        salePrice: 19.99,
+        category: "mens",
+        subCategory: "t-shirts",
+        imageUrls: ["https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"],
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        colors: ["White", "Black", "Navy", "Gray", "Green"],
+        material: "100% Organic Cotton",
+        isNew: false,
+        isFeatured: false
+      },
+      {
+        name: "Slim Fit Chino Pants",
+        description: "Versatile slim fit chino pants that transition effortlessly from work to weekend.",
+        price: 59.99,
+        category: "mens",
+        subCategory: "jeans",
+        imageUrls: ["https://images.unsplash.com/photo-1517445312882-bc9910d042b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"],
+        sizes: ["28", "30", "32", "34", "36", "38"],
+        colors: ["Khaki", "Navy", "Black", "Olive"],
+        material: "98% Cotton, 2% Elastane",
+        isNew: false,
+        isFeatured: false
+      },
+      {
+        name: "Classic Straight Jeans",
+        description: "Timeless straight-leg jeans with a comfortable regular fit. Made from high-quality denim.",
+        price: 69.99,
+        category: "mens",
+        subCategory: "jeans",
+        imageUrls: ["https://images.unsplash.com/photo-1555689502-c4b22d76c56f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"],
+        sizes: ["28", "30", "32", "34", "36", "38", "40"],
+        colors: ["Dark Blue", "Medium Blue", "Black"],
+        material: "100% Cotton Denim",
+        isNew: false,
+        isFeatured: true
+      },
+      
+      // Shoes
+      {
         name: "Leather Ankle Boots",
         description: "Stylish and comfortable ankle boots made with genuine leather. Perfect for any occasion.",
         price: 129.99,
-        salePrice: 169.99,
+        salePrice: 99.99,
         category: "shoes",
         subCategory: "boots",
         imageUrls: ["https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"],
@@ -159,6 +283,48 @@ export class MemStorage implements IStorage {
         isNew: false,
         isFeatured: true
       },
+      {
+        name: "Canvas Sneakers",
+        description: "Classic canvas sneakers with rubber soles. Lightweight and comfortable for everyday wear.",
+        price: 49.99,
+        category: "shoes",
+        subCategory: "sneakers",
+        imageUrls: ["https://images.unsplash.com/photo-1603808033192-082d6919d3e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"],
+        sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"],
+        colors: ["White", "Black", "Navy", "Red"],
+        material: "Canvas and Rubber",
+        isNew: true,
+        isFeatured: false
+      },
+      {
+        name: "Athletic Running Shoes",
+        description: "Performance running shoes with responsive cushioning and breathable mesh upper.",
+        price: 89.99,
+        category: "shoes",
+        subCategory: "sneakers",
+        imageUrls: ["https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"],
+        sizes: ["38", "39", "40", "41", "42", "43", "44", "45"],
+        colors: ["Black/White", "Blue/Gray", "All Black"],
+        material: "Synthetic and Mesh",
+        isNew: true,
+        isFeatured: true
+      },
+      {
+        name: "Strappy Heeled Sandals",
+        description: "Elegant strappy sandals with a comfortable mid-heel. Perfect for dressing up any outfit.",
+        price: 79.99,
+        salePrice: 59.99,
+        category: "shoes",
+        subCategory: "sandals",
+        imageUrls: ["https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"],
+        sizes: ["35", "36", "37", "38", "39", "40", "41"],
+        colors: ["Black", "Nude", "Silver", "Gold"],
+        material: "Synthetic Leather",
+        isNew: false,
+        isFeatured: false
+      },
+      
+      // Accessories
       {
         name: "Cashmere Scarf",
         description: "Luxurious cashmere scarf to keep you warm and stylish during colder months.",
@@ -170,6 +336,42 @@ export class MemStorage implements IStorage {
         material: "Cashmere",
         isNew: false,
         isFeatured: true
+      },
+      {
+        name: "Leather Tote Bag",
+        description: "Spacious leather tote bag with internal pockets. Perfect for work, travel, or everyday use.",
+        price: 119.99,
+        category: "accessories",
+        subCategory: "bags",
+        imageUrls: ["https://images.unsplash.com/photo-1548863227-3af567fc3b27?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"],
+        colors: ["Black", "Brown", "Tan"],
+        material: "Genuine Leather",
+        isNew: true,
+        isFeatured: true
+      },
+      {
+        name: "Minimalist Watch",
+        description: "Elegant minimalist watch with a premium leather strap. A timeless accessory for any outfit.",
+        price: 99.99,
+        category: "accessories",
+        subCategory: "jewelry",
+        imageUrls: ["https://images.unsplash.com/photo-1524805444758-089113d48a6d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"],
+        colors: ["Black/Silver", "Brown/Gold", "Black/Gold"],
+        material: "Stainless Steel, Leather",
+        isNew: false,
+        isFeatured: false
+      },
+      {
+        name: "Wide Brim Straw Hat",
+        description: "Classic wide brim straw hat, perfect for sun protection with a touch of style.",
+        price: 34.99,
+        category: "accessories",
+        subCategory: "hats",
+        imageUrls: ["https://images.unsplash.com/photo-1565339119810-a536680fd7e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"],
+        colors: ["Natural", "Black", "White"],
+        material: "Straw",
+        isNew: true,
+        isFeatured: false
       }
     ];
     

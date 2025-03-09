@@ -53,11 +53,53 @@ const Checkout = () => {
   
   const [isComplete, setIsComplete] = useState(false);
   const [orderNumber, setOrderNumber] = useState('');
+  const [promoCode, setPromoCode] = useState('');
+  const [promoApplied, setPromoApplied] = useState(false);
+  const [promoError, setPromoError] = useState('');
+  const [discount, setDiscount] = useState(0);
   
   // Calculate additional costs
   const shipping = totalPrice >= 99 ? 0 : 5.99;
   const tax = totalPrice * 0.08; // 8% tax rate
   const total = totalPrice + shipping + tax;
+  
+  // Handle promo code application
+  const handlePromoCode = () => {
+    // Valid promo codes (in a real app, these would be validated server-side)
+    const validPromoCodes = {
+      'WELCOME10': 0.1, // 10% off
+      'FASHION20': 0.2, // 20% off
+      'FREESHIP': 0.05, // 5% off
+    };
+    
+    if (promoApplied) {
+      // Remove promo code
+      setPromoApplied(false);
+      setDiscount(0);
+      setPromoError('');
+      setPromoCode('');
+      return;
+    }
+    
+    if (!promoCode.trim()) {
+      setPromoError('Please enter a promo code');
+      return;
+    }
+    
+    const normalizedCode = promoCode.trim().toUpperCase();
+    const discountRate = validPromoCodes[normalizedCode];
+    
+    if (discountRate) {
+      const discountAmount = totalPrice * discountRate;
+      setDiscount(discountAmount);
+      setPromoApplied(true);
+      setPromoError('');
+    } else {
+      setPromoError('Invalid promo code');
+      setPromoApplied(false);
+      setDiscount(0);
+    }
+  };
   
   // Form with validation
   const form = useForm<FormValues>({
@@ -346,23 +388,94 @@ const Checkout = () => {
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="md:col-span-2">
                               <FormLabel>Card Number</FormLabel>
-                              <Input placeholder="•••• •••• •••• ••••" />
+                              <Input
+                                placeholder="•••• •••• •••• ••••"
+                                onChange={(e) => {
+                                  // Only allow digits and limit to 19 characters (with spaces)
+                                  const value = e.target.value.replace(/[^\d\s]/g, '');
+                                  if (value.replace(/\s/g, '').length <= 16) {
+                                    // Format with spaces every 4 digits
+                                    const formatted = value
+                                      .replace(/\s/g, '')
+                                      .replace(/(\d{4})/g, '$1 ')
+                                      .trim();
+                                    e.target.value = formatted;
+                                  }
+                                }}
+                                maxLength={19}
+                              />
                             </div>
                             
                             <div>
                               <FormLabel>Expiration Date</FormLabel>
-                              <Input placeholder="MM/YY" />
+                              <Input
+                                placeholder="MM/YY"
+                                onChange={(e) => {
+                                  // Only allow digits and /
+                                  const value = e.target.value.replace(/[^\d/]/g, '');
+                                  if (value.length <= 5) {
+                                    // Format as MM/YY
+                                    let formatted = value;
+                                    if (value.length === 2 && !value.includes('/')) {
+                                      formatted = value + '/';
+                                    }
+                                    e.target.value = formatted;
+                                  }
+                                }}
+                                maxLength={5}
+                              />
                             </div>
                             
                             <div>
                               <FormLabel>Security Code (CVC)</FormLabel>
-                              <Input placeholder="•••" />
+                              <Input
+                                placeholder="•••"
+                                onChange={(e) => {
+                                  // Only allow digits and limit to 3-4 characters
+                                  const value = e.target.value.replace(/[^\d]/g, '');
+                                  if (value.length <= 4) {
+                                    e.target.value = value;
+                                  }
+                                }}
+                                maxLength={4}
+                                type="password"
+                              />
+                            </div>
+                          </div>
+                          
+                          <div className="flex items-center justify-between p-2 bg-gray-50 rounded border border-gray-200">
+                            <div className="flex items-center space-x-2">
+                              <CreditCard className="h-4 w-4 text-gray-600" />
+                              <span className="text-sm font-medium text-gray-600">Accepted Cards</span>
+                            </div>
+                            <div className="flex space-x-2">
+                              <div className="w-10 h-6 bg-blue-600 rounded"></div>
+                              <div className="w-10 h-6 bg-red-500 rounded"></div>
+                              <div className="w-10 h-6 bg-green-600 rounded"></div>
+                              <div className="w-10 h-6 bg-yellow-500 rounded"></div>
                             </div>
                           </div>
                           
                           <Alert className="bg-gray-50">
                             <CreditCard className="h-4 w-4" />
                             <AlertTitle>Secure Payment</AlertTitle>
+                            <AlertDescription>
+                              This is a demo. No actual payment will be processed. Your information is secure.
+                            </AlertDescription>
+                          </Alert>
+                        </div>
+                      )}
+                      
+                      {form.watch('paymentMethod') === 'paypal' && (
+                        <div className="mt-4 p-6 border border-gray-200 rounded-md space-y-4 text-center">
+                          <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
+                            <div className="text-blue-600 font-bold text-xl">P</div>
+                          </div>
+                          <h3 className="font-semibold text-lg">Pay with PayPal</h3>
+                          <p className="text-gray-500 text-sm">
+                            You will be redirected to PayPal to complete your payment securely.
+                          </p>
+                          <Alert className="bg-gray-50">
                             <AlertDescription>
                               This is a demo. No actual payment will be processed.
                             </AlertDescription>
@@ -423,6 +536,34 @@ const Checkout = () => {
                   })}
                 </div>
                 
+                <div className="mb-4">
+                  <div className="flex">
+                    <Input
+                      placeholder="Promo Code"
+                      className="rounded-r-none"
+                      value={promoCode}
+                      onChange={(e) => setPromoCode(e.target.value)}
+                    />
+                    <Button
+                      type="button"
+                      className="rounded-l-none"
+                      variant={promoApplied ? "outline" : "default"}
+                      onClick={handlePromoCode}
+                    >
+                      {promoApplied ? "Remove" : "Apply"}
+                    </Button>
+                  </div>
+                  {promoError && (
+                    <p className="text-red-500 text-sm mt-1">{promoError}</p>
+                  )}
+                  {promoApplied && (
+                    <div className="flex items-center text-sm text-green-600 mt-1">
+                      <Check className="h-4 w-4 mr-1" />
+                      Promo code applied successfully!
+                    </div>
+                  )}
+                </div>
+                
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Subtotal</span>
@@ -436,6 +577,12 @@ const Checkout = () => {
                       <span>${shipping.toFixed(2)}</span>
                     )}
                   </div>
+                  {promoApplied && (
+                    <div className="flex justify-between text-green-600">
+                      <span>Discount</span>
+                      <span>-${discount.toFixed(2)}</span>
+                    </div>
+                  )}
                   <div className="flex justify-between">
                     <span className="text-gray-600">Tax</span>
                     <span>${tax.toFixed(2)}</span>
@@ -443,7 +590,7 @@ const Checkout = () => {
                   <div className="border-t border-gray-200 pt-3 mt-3">
                     <div className="flex justify-between font-semibold">
                       <span>Total</span>
-                      <span>${total.toFixed(2)}</span>
+                      <span>${(total - discount).toFixed(2)}</span>
                     </div>
                   </div>
                 </div>
