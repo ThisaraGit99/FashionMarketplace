@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'wouter';
+import { useLocation, Link } from 'wouter';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useAuth } from '@/hooks/useAuth';
 import { apiRequest } from '@/lib/queryClient';
@@ -488,7 +488,7 @@ const Orders = () => {
                   </div>
                   <div className="flex justify-between py-1">
                     <span>Payment Status</span>
-                    <Badge variant="success" className="bg-green-100 text-green-800">
+                    <Badge variant="default" className="bg-green-100 text-green-800">
                       <CheckCircle className="mr-1 h-3 w-3" />
                       Paid
                     </Badge>
