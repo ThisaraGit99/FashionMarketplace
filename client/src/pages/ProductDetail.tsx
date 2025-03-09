@@ -3,7 +3,7 @@ import { useRoute } from 'wouter';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/hooks/useAuth';
-import { Star, StarHalf, Truck, RotateCcw, Heart, Share2 } from 'lucide-react';
+import { Star, StarHalf, Truck, RotateCcw, Heart, Share2, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
